@@ -2,22 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-   
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-   
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+
     <title>Color picker</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    
+    <div class="container-wheel">
+      <div class="colorPicker"></div>
+      <div class="info-wheel">
+        <div class="prevState">
+          <p>Previous</p>
+          <div id="prevColor"></div>
+        </div>
+        <div class="currentState">
+          <p>Current</p>
+          <div id="currentColor"></div>
+        </div>
+        <button id="btn">NEW</button>
+      </div>
+    </div>
+
+    <script>
+      const colorPicker = new iro.ColorPicker(".colorPicker", {
+        width: 280,
+        color: "rgb(255, 255, 255)",
+        borderWidth: 1,
+        borderColor: "#fff",
+      });
+
+      colorPicker.on(["color:init", "color:change"], function (color) {
+
+        currentColor.style.backgroundColor = color.rgbString
+        currentColorBg = currentColor.style.backgroundColor;
+      });
+      btn.addEventListener('click', function () {
+        prevColor.style.backgroundColor = currentColorBg
+        console.log(currentColorBg)
+      })
+    </script>
+
   </body>
 </html>
