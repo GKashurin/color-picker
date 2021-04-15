@@ -34,19 +34,29 @@
     <script>
       const colorPicker = new iro.ColorPicker(".colorPicker", {
         width: 280,
-        color: "rgb(255, 255, 255)",
+        color: "rgba(255, 255, 255, 1)",
         borderWidth: 1,
         borderColor: "#fff",
+        layout: [
+          {
+            component: iro.ui.Wheel,
+          },
+          {
+            component: iro.ui.Slider,
+            options: {
+              sliderType: 'alpha',
+            }
+          }
+        ]
       });
 
       colorPicker.on(["color:init", "color:change"], function (color) {
 
-        currentColor.style.backgroundColor = color.rgbString
+        currentColor.style.backgroundColor = color.rgbaString
         currentColorBg = currentColor.style.backgroundColor;
       });
       btn.addEventListener('click', function () {
         prevColor.style.backgroundColor = currentColorBg
-        console.log(currentColorBg)
       })
     </script>
 
